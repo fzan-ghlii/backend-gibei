@@ -1,0 +1,35 @@
+// Ini adalah file skema Prisma Anda.
+// Pelajari lebih lanjut: https://pris.ly/d/prisma-schema
+
+// Mendefinisikan generator client Prisma (untuk TypeScript)
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Mendefinisikan koneksi database Anda
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // Mengambil URL dari file .env
+}
+
+// --- Mulai Definisikan Model Database Anda di Sini ---
+
+// Model untuk Fase 1 (Contoh)
+// Hapus 'Role' jika Anda tidak akan menggunakannya sebagai tabel terpisah
+enum Role {
+  USER
+  ADMIN
+  MASTER_ADMIN
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  nama      String
+  password  String // Akan kita hash sebelum disimpan
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Tambahkan model lain (Article, Event, SpmRegistration) di sini nanti...
