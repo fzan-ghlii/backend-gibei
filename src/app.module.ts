@@ -5,6 +5,12 @@ import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { ArticlesModule } from './articles/articles.module';
+import { GalleryModule } from './gallery/gallery.module';
+import { UploadsModule } from './uploads/uploads.module';
+import { EventsModule } from './events/events.module';
+import { SpmModule } from './spm/spm.module';
+import { RegistrationsModule } from './registrations/registrations.module';
 
 @Module({
   imports: [
@@ -21,6 +27,18 @@ import { UsersModule } from './users/users.module';
     AuthModule,
 
     UsersModule,
+
+    ArticlesModule,
+
+    GalleryModule,
+
+    UploadsModule,
+
+    EventsModule,
+
+    SpmModule,
+
+    RegistrationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

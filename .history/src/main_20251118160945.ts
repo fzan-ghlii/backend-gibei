@@ -11,11 +11,10 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 
-import { join } from 'path';
-import type { NestExpressApplication } from '@nestjs/platform-express';
+
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create(AppModule);
 
   // Fase 0, Langkah 5: Aktifkan CORS
   app.enableCors({
@@ -29,9 +28,7 @@ async function bootstrap() {
 
   // (Opsional tapi disarankan) Tambahkan prefix global untuk semua API
   app.setGlobalPrefix('api/v1');
-  app.useStaticAssets(join(process.cwd(), 'public'), {
-    prefix: '/', // Ini membuat file diakses langsung dari root (cth: /uploads/gambar.png)
-  });
+
   // Fase 0 (Prisma): Aktifkan shutdown hooks
   // Ini memastikan Prisma menutup koneksi dgn benar saat app dimatikan
   const prismaService = app.get(PrismaService);

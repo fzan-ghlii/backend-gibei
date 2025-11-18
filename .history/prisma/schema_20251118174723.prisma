@@ -33,8 +33,6 @@ model User {
 
   // Relasi: Satu User (Author) bisa menulis banyak Artikel
   articles Article[]
-  eventRegistrations EventRegistration[]
-  spmRegistrations  SpmRegistration[]
 }
 
 // --- FASE 2: Model Artikel ---

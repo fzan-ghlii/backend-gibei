@@ -1,0 +1,66 @@
+// Ini adalah file skema Prisma Anda.
+// Pelajari lebih lanjut: https://pris.ly/d/prisma-schema
+
+// Mendefinisikan generator client Prisma (untuk TypeScript)
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Mendefinisikan koneksi database Anda
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // Mengambil URL dari file .env
+}
+
+// --- Mulai Definisikan Model Database Anda di Sini ---
+
+// Model untuk Fase 1 (Contoh)
+// Hapus 'Role' jika Anda tidak akan menggunakannya sebagai tabel terpisah
+enum Role {
+  USER
+  ADMIN
+  MASTER_ADMIN
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  nama      String
+  password  String // Akan kita hash sebelum disimpan
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relasi: Satu User (Author) bisa menulis banyak Artikel
+  articles Article[]
+}
+
+// --- FASE 2: Model Artikel ---
+model Article {
+  id         Int      @id @default(autoincrement())
+  title      String   @unique
+  content    String   @db.Text // @db.Text untuk teks yang panjang
+  imageUrl   String
+  category   String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  // Relasi ke Author (User)
+  authorId   Int
+  author     User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+}
+
+// --- FASE 2: Model Galeri ---
+enum GalleryCategory {
+  FOTO
+  VIDEO
+}
+
+model GalleryItem {
+  id          Int             @id @default(autoincrement())
+  title       String
+  category    GalleryCategory
+  imageUrl    String          // Untuk thumbnail FOTO atau VIDEO
+  videoUrl    String?         // URL video (misal: YouTube embed), opsional
+  createdAt   DateTime        @default(now())
+}
