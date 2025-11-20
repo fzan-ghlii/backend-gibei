@@ -1,7 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsInt, IsNotEmpty, IsString } from 'class-validator';
 
 export class RegisterSpmDto {
+  @ApiProperty({ example: 1, description: 'ID dari jadwal SPM yang dipilih' })
+  @IsInt()
+  @IsNotEmpty()
+  spmId: number;
+
   @ApiProperty({
     example: '812345678',
     description: 'NIM Mahasiswa atau NIK Umum',

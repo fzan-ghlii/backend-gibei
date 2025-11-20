@@ -2,10 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
 
 export class RegisterSpmDto {
-  @ApiProperty({
-    example: '812345678',
-    description: 'NIM Mahasiswa atau NIK Umum',
-  })
+  @ApiProperty({ example: '812345678', description: 'NIM Mahasiswa atau NIK Umum' })
   @IsString()
   @IsNotEmpty()
   nim: string;

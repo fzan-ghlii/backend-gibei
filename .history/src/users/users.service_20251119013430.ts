@@ -38,7 +38,7 @@ export class UsersService {
       where: { id },
       select: {
         id: true,
-        nama: true, // Pastikan ini terpilih agar muncul di Dashboard
+        nama: true,  // Pastikan ini terpilih agar muncul di Dashboard
         email: true, // Pastikan ini terpilih
         role: true,
         createdAt: true,
