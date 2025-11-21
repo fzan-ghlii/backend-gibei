@@ -14,8 +14,8 @@
     "skipLibCheck": true,
     "strictNullChecks": false,
     "baseUrl": "./",
-    "paths": {
-     "src/*": ["src/*"]
+"paths": {
+  "src/*": ["src/*"]
   }
 }
 }

@@ -19,7 +19,8 @@ async function bootstrap() {
 
   // Fase 0, Langkah 5: Aktifkan CORS
   app.enableCors({
-    origin: ['http://localhost:5173', 'https://gibei-test.vercel.app'], // Sesuaikan dengan port FE Vue Anda
+    origin: ['http://localhost:5173',
+    ], // Sesuaikan dengan port FE Vue Anda
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
